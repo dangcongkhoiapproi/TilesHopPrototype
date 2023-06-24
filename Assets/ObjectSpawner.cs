@@ -44,19 +44,21 @@ public class ObjectSpawner : MonoBehaviour
         if(DataManager.Instance.spawnTransformList.Count > 0 )
         {
             Transform a = DataManager.Instance.spawnTransformList[DataManager.Instance.spawnTransformList.Count - 1];
-            GameObject newObject = Instantiate(objectPrefab, new Vector3(0f, spawnHeight, (a.position.z+1)+ spawnTimes[currentIndex]*5), Quaternion.identity);
+            float DistanceZ = (a.position.z + 1) + spawnTimes[currentIndex] * 5;
+            Vector3 Distance = new Vector3(0f, spawnHeight, DistanceZ);
+            
+            GameObject newObject = Instantiate(objectPrefab, Distance, Quaternion.identity);
             DataManager.Instance.spawnTransformList.Add(newObject.transform);
+            DataManager.Instance.jumpDistances.Add(DistanceZ);
         }
         else
         {
+            float DistanceZ = 0f;
+            Vector3 Distance = new Vector3(0f, spawnHeight, DistanceZ);
             GameObject newObject = Instantiate(objectPrefab, new Vector3(0f, spawnHeight, 0f), Quaternion.identity);
             DataManager.Instance.spawnTransformList.Add(newObject.transform);
+            DataManager.Instance.jumpDistances.Add(DistanceZ);
         }
-        
-        
-
-        
-
         currentIndex++;
 
 
