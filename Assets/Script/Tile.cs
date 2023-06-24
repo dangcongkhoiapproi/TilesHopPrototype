@@ -18,6 +18,6 @@ public class Tile : MonoBehaviour
 
         
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 }

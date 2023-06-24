@@ -7,25 +7,28 @@ public class ReadMusicMap : MonoBehaviour
 {
     [SerializeField]
     List<MusicMap> musicMaps;
-    public static List<DataMusic> DataMusic;
-    int index;
+    List<DataMusic> music;
+    public static ReadMusicMap Instance { get; private set; }
+    
     void Start()
     {
+       music = new List<DataMusic>();
        
-       index = 1;
         ReadFile();
-        
-    }
-
-    void ReadFile()
-    {
-        if (DataMusic == null)
+        foreach (var item in music)
         {
-            DataMusic = new List<DataMusic>();
+            DataMusic a = new DataMusic();
+            a.NumberList = item.NumberList;
+            DataManager.Instance.DataMusic.Add(a);
         }
+    }
+    
+    public void ReadFile()
+    {
+        
         foreach (var map in musicMaps)
         {
-            DataMusic musicConfig = new DataMusic(index);
+            DataMusic musicConfig = new DataMusic();
             var filePath = map.Path;
             if (File.Exists(filePath))
             {
@@ -40,10 +43,8 @@ public class ReadMusicMap : MonoBehaviour
                     float number;
                     if (float.TryParse(numberString, out number))
                     {
-                        
-                        musicConfig.NumberList.Add(number);
 
-                       
+                        DataManager.Instance.DataMusicList.Add(number);
                     }
                 }
                
@@ -52,9 +53,9 @@ public class ReadMusicMap : MonoBehaviour
             {
                 Debug.LogError("File does not exist at path: " + filePath);
             }
-            //DataManager.Instance.DataMusic.Add(musicConfig);
-            DataMusic.Add(musicConfig);
-            index++;
+            
+            //DataMusic.Add(musicConfig);
+           
         }
     }
 }

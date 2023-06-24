@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataMusic : MonoBehaviour
+public class DataMusic 
 {
-    public int ID { get; set; }
     public List<float> NumberList { get; set; }
 
-    public DataMusic(int id)
+   
+
+    public DataMusic()
     {
-        ID = id;
         NumberList = new List<float>();
     }
-
-    
 }
