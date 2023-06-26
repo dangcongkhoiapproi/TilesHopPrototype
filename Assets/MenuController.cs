@@ -22,7 +22,7 @@ public class MenuController : MonoBehaviour
     }
     private void OnClickPlay()
     {
-        Ball.GetComponent<PlayerController>().Init();
+      // Ball.GetComponent<PlayerController>().Init();
        Ball.GetComponent<Rigidbody>().isKinematic = false;
         audioSource.Play();
     }
